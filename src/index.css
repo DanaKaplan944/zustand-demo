@@ -113,3 +113,71 @@ button {
   box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px,
     rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
 }
+
+#game {
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.soft-reset {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 4px;
+  height: auto;
+  width: auto;
+}
+
+.soft-reset:hover {
+  background-color: #2980b9;
+}
+
+.end-game {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #e74c3c;
+}
+
+button#reset-board {
+  background-color: #2ecc71;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 4px;
+  width: auto;
+  height: auto;
+}
+
+button#reset-board:hover {
+  background-color: #27ae60;
+}
+
+.box-button {
+  background-color: #ecf0f1;
+  color: #333;
+  border: 1px solid #bdc3c7;
+  padding: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  margin: 5px;
+  width: 60px;
+  height: 60px;
+}
+
+.box-button:hover {
+  background-color: #d5d8dc;
+}
+
+.container {
+  padding: 0 2.5%;
+}
