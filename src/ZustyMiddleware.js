@@ -1,6 +1,12 @@
 export default function zustyMiddleware(createFunction) {
   return (set, get) => {
     const store = createFunction(set, get);
+
+    const applicationStore = {};
+    for (const key in store) {
+      applicationStore[key] = '' + store[key] + '';
+    }
+
     for (let key in store) {
       if (typeof store[key] === 'function') {
         let originalFunction = store[key];
@@ -12,7 +18,6 @@ export default function zustyMiddleware(createFunction) {
           const nextState = get();
 
           const actionCompleteTime = endTime - startTime;
-          console.log('actionCompleteTime: ', actionCompleteTime);
 
           window.postMessage({
             body: 'actionAndStateSnapshot',
@@ -20,6 +25,7 @@ export default function zustyMiddleware(createFunction) {
             actionCompleteTime,
             prevState: JSON.stringify(prevState),
             nextState: JSON.stringify(nextState),
+            store: JSON.stringify(applicationStore),
           });
         };
       }
