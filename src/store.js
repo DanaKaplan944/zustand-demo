@@ -13,6 +13,7 @@ const useStore = create(
       set((state) => {
         let i = 0;
         while (i < delay) {
+          console.log('slow down the program');
           i += 1;
         }
         return state;

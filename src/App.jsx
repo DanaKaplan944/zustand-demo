@@ -1,4 +1,3 @@
-// import './App.css';
 import React from 'react';
 import './index.css';
 import IncrementButton from './components/counter/IncrementButton';
