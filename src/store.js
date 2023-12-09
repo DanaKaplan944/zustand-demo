@@ -1,8 +1,8 @@
 import { create } from 'zustand';
-import zustyMiddleware from './ZustyMiddleware';
+import zustymiddleware from 'zustymiddleware';
 
 const useStore = create(
-  zustyMiddleware((set) => ({
+  zustymiddleware((set) => ({
     count: 0,
     increaseCount: () => set((state) => ({ count: state.count + 1 })),
     decrementCount: () =>
@@ -13,7 +13,6 @@ const useStore = create(
       set((state) => {
         let i = 0;
         while (i < delay) {
-          console.log('slow down the program');
           i += 1;
         }
         return state;
@@ -23,64 +22,6 @@ const useStore = create(
     gameOver: false,
     message: '',
     boardSize: 3,
-
-    checkForWinner: (state) => {
-      const b = { ...state.board };
-      const iP = state.currentPlayer;
-      let victoryCondition = '';
-      for (let i = 0; i < state.boardSize; i++) {
-        victoryCondition += `${iP}`;
-      }
-
-      // check rows
-      for (let i = 0; i < state.boardSize; i++) {
-        let result = '';
-        for (let j = 0; j < state.boardSize; j++) {
-          result += `${b[`${i}${j}`]}`;
-        }
-        if (result === victoryCondition) {
-          state.winner();
-          return;
-        }
-      }
-
-      // check columns
-      for (let j = 0; j < state.boardSize; j++) {
-        let result = '';
-        for (let i = 0; i < state.boardSize; i++) {
-          result += `${b[`${i}${j}`]}`;
-        }
-        if (result === victoryCondition) {
-          state.winner();
-          return;
-        }
-      }
-
-      // check diagonals
-      let diagonal1 = '';
-      for (let i = 0; i < state.boardSize; i++) {
-        diagonal1 += `${b[`${i}${i}`]}`;
-      }
-      if (diagonal1 === victoryCondition) {
-        state.winner();
-        return;
-      }
-
-      let diagonal2 = '';
-      for (let i = 0; i < state.boardSize; i++) {
-        diagonal2 += `${b[`${i}${state.boardSize - 1 - i}`]}`;
-      }
-      if (diagonal2 === victoryCondition) {
-        state.winner();
-        return;
-      }
-
-      // check for tie
-      if (state.board.dashes === 0) {
-        state.draw();
-        return;
-      }
-    },
 
     // Reset board but leave scores
     resetBoard: () => {
@@ -135,19 +76,6 @@ const useStore = create(
         O: 'X',
       };
       return change[state.currentPlayer];
-    },
-
-    // Winner result function
-    winner: () => {
-      set((state) => ({
-        gameOver: true,
-        message: `Player ${state.currentPlayer} wins!!!`,
-      }));
-    },
-
-    // Draw result function
-    draw: () => {
-      set({ gameOver: true, message: "It's a Draw!!!" });
     },
   }))
 );
